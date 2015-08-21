@@ -72,6 +72,7 @@ switch($_REQUEST['mode']) {
 		}
 		$pages['current'] = $_REQUEST['page'];
 		$display->clients = User::ListUsers(array("search" => $_REQUEST['search'], "limit" => "0,".$limit));
+		$display->linkprofil = CSA::getInstance()->settings['linkprofile'];
 		$display->pages = $pages;
 		$display->Output("interface/clients/clients-list.tpl");
 		exit();
