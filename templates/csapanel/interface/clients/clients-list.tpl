@@ -60,7 +60,7 @@
 						BootstrapDialog.show({
 							title: '{/literal}{$lang.proof}{literal}',
 							message: data,
-							height: '600px',
+							height: '330px',
 							buttons: [{
 									label: '{/literal}{$lang.ok}{literal}',
 									action: function(dialogRef) {
@@ -81,7 +81,7 @@
 						BootstrapDialog.show({
 							title: '{/literal}{$lang.notes}{literal}',
 							message: data,
-							height: '600px',
+							height: '330px',
 							buttons: [{
 									label: '{/literal}{$lang.ok}{literal}',
 									action: function(dialogRef) {
