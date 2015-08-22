@@ -12,6 +12,57 @@
 
 
 require_once("includes/csa-functions.php");
+if($_SERVER['REQUEST_METHOD'] == 'POST') {
+	switch($_REQUEST['mode']) {
+		case "reportadd" : {
+			$return = User::AddClientPending(array(
+				'email' => $_REQUEST['email'],
+				'userid' => $_REQUEST['userid'],
+				'status' => $_REQUEST['status'],
+				'realname' => $_REQUEST['realname'],
+				'proof' => $_REQUEST['proof'],
+				'phone' => $_REQUEST['phone'],
+				'notes' => $_REQUEST['notes']
+			));
+			switch($return['response']) {
+				case "useradded" : {
+					$_SESSION['goodmessage'] = $lang['useradded'];
+					break;
+				}
+				case "novalidemail" : {
+					$response = $lang['novalidemail'];
+					break;
+				}
+				case "invalidemail" : {
+					$response = $lang['invalidemail'];
+					break;
+				}
+				case "nouserid" : {
+					$response = $lang['nouserid'];
+					break;
+				}
+				case "proofnotdefined" : {
+					$response = $lang['proofnotdefined'];
+					break;
+				}
+				default : {
+					$response = $lang['opssomething'];
+					break;
+				}
+			}
+			if(!empty($response)) {
+				$_SESSION['errormessage'] = $response;
+			}
+			header("Location: index.php?mode=reportclient");
+			exit();
+			break;
+		}
+		default : {
+			$_SESSION['errormessage'] = $lang['opssomething'];
+			break;
+		}
+	}
+}
 switch($_REQUEST['mode']) {
 	case "pagination" : {
 		$limit = 30;
