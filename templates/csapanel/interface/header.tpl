@@ -50,3 +50,4 @@
 				</h1>
 			</header>
 			<section class="container" role="main">
+			{include file="common/message-header.tpl"}
