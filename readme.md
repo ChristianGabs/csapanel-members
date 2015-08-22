@@ -1,5 +1,5 @@
 #CSA-Panel Members V1.0#
-
+.. image:: https://raw.githubusercontent.com/developerkryss/csapanel-members/master/templates/csapanel/images/logointerface.png
 ===================================================================
 
 http://www.csa-panel.ro/
