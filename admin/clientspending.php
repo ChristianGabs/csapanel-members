@@ -202,7 +202,7 @@ switch($_REQUEST['mode']) {
 		break;
 	}
 	case "getnotes" : {
-		$data = User::GetClient(array("uid" => $_GET['uid']));
+		$data = User::GetClient(array("uid" => $_GET['uid'], "type" => "clientspending"));
 		$response = explode(PHP_EOL, $data['details']);
 		$display->client = $response;
 		$display->DisplayType("ajax");
@@ -211,7 +211,7 @@ switch($_REQUEST['mode']) {
 		break;
 	}
 	case "getproof" : {
-		$data = User::GetClient(array("uid" => $_GET['uid']));
+		$data = User::GetClient(array("uid" => $_GET['uid'], "type" => "clientspending"));
 		$response = explode(PHP_EOL, $data['proof']);
 		$display->client = $response;
 		$display->DisplayType("ajax");
