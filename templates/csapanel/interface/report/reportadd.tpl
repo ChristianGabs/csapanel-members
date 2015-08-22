@@ -6,8 +6,8 @@
 				<p>{$lang.addreportinfo}</p>
 			</header>
 			<section>
-				<form action="clients.php" method="post">
-					<input type="hidden" name="mode" value="add" />
+				<form action="index.php" method="post">
+					<input type="hidden" name="mode" value="reportadd" />
 						<div class="row">
 							<div class='col-sm-4'>    
 								<div class='form-group'>
