@@ -386,6 +386,28 @@ class User {
 		}
 		return $clients;
 	}
+	public static function AddClientPending($data) {
+		if (empty($data['email'])) {
+			return array("response" => "novalidemail");
+		} elseif(empty($data['userid'])) {
+			return array("response" => "nouserid");
+		} elseif (empty($data['proof'])) {
+			return array("response" => "proofnotdefined");
+		}
+		if (self::CheckNewUserValid($data['email']) == false) {
+			return array("response" => "invalidemail");
+		}
+		$time = time();
+		$query = CSA::getInstance()->sqli->query("SELECT * FROM `clients` WHERE `email`='{$data['email']}' OR `userid`='{$data['userid']}';");
+		if($query->num_rows > 0) {
+			return array("response" => "clientexist");
+		} else {
+			CSA::getInstance()->sqli->query("INSERT INTO `clients_pending` SET `email`='{$data['email']}', `userid`='{$data['userid']}', `realname`='{$data['realname']}', `phone`='{$data['phone']}', `proof`='{$data['proof']}', `details`='{$data['notes']}', `status`='{$data['status']}', `time`='{$time}';");
+			return array("response" => "useradded");
+		}
+		return array("response" => "usererror");
+		
+	}
 	//----------------------- Interface -----------------------------------
 	
 	public static function Login($email, $password) {
