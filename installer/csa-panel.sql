@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS `clients_pending` (
   `email` varchar(256) NOT NULL,
   `userid` varchar(256) NOT NULL,
   `realname` varchar(255) NOT NULL,
-  `phones` text NOT NULL,
+  `phone` text NOT NULL,
   `proof` text NOT NULL,
   `details` text NOT NULL,
   `status` int(1) NOT NULL,
