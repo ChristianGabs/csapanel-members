@@ -372,7 +372,11 @@ class User {
 	static function GetClient($data) {
 		$clients = array();
 		if(isset($data['uid'])) {
-			$query = CSA::getInstance()->sqli->query("SELECT * FROM `clients` WHERE `uid`='{$data['uid']}' LIMIT 1;");
+			if($data['type'] == "clientspending") {
+				$query = CSA::getInstance()->sqli->query("SELECT * FROM `clients_pending` WHERE `uid`='{$data['uid']}' LIMIT 1;");
+			} else {
+				$query = CSA::getInstance()->sqli->query("SELECT * FROM `clients` WHERE `uid`='{$data['uid']}' LIMIT 1;");
+			}
 			$clients = $query->fetch_assoc();
 		} else {
 			$x = 0;
