@@ -2,15 +2,12 @@
 
 ===================================================================
 
-
-
 Version 1.0.0 (BETA)
 
 August 21rd, 2015
 
 Development
 -----------
-This section details "quick development" steps. For a detailed explanation, see [[Contributing.md]].
 
 1. Clone this repository from GitHub:
 
