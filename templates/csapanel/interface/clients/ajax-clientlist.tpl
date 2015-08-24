@@ -10,11 +10,11 @@
 		<thead>
 			<tr>
 				<th>{$lang.name} / {$lang.userid}</th>
-				<th>{$lang.email}</th>
-				<th data-hide="phone">{$lang.realname}</th>
-				<th data-hide="phone">{$lang.proof}</th>
+				<th data-hide="phone">{$lang.email}</th>
+				<th >{$lang.realname}</th>
+				<th>{$lang.proof}</th>
 				<th data-hide="phone">{$lang.notes}</th>
-				<th data-hide="phone">{$lang.status}</th>
+				<th>{$lang.status}</th>
 				<th data-hide="phone">{$lang.dateadd}</th>
 			</tr>
 		</thead>
