@@ -13,9 +13,9 @@ Development
 
 		$ git clone git@github.com:developerkryss/csapanel-members.git
 
-2. Create a git branch
+2. To keep update with changes please use this command
 
-		$ git checkout -b my_bug_fix
+		$ git pull
 
 ##Technology##
 
