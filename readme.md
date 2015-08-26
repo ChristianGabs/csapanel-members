@@ -11,8 +11,33 @@ Development
 
 1. Clone this repository from GitHub:
 
-		$ git clone git@github.com:developerkryss/csapanel-members.git
-
+		$ git clone git@github.com:developerkryss/csapanel-members.git 
+		
+	Guide :
+	Wneh you clone this please fallow this guide !
+	
+	1). If you want to update every time when something in code change and keep update whit bugfix
+	
+		- run every time "$ git pull"
+		
+	2). If you want to put your maine website or your folder to keep every time the git clone update
+	
+		$ cd /var/www/
+		
+			OR
+			
+		$ cd /home/www/
+		
+		$ git clone git@github.com:developerkryss/csapanel-members.git yournameoffolder
+		
+			OR
+			
+		$ git clonse https://github.com/developerkryss/csapanel-members.git yourfoldername
+		
+		$ cd yournamefolder
+		
+	3). Run every time when you want git pull to update the code !
+	
 2. To keep update with changes please use this command
 
 		$ git pull
