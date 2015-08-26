@@ -47,15 +47,10 @@ function AutoLoadClass($classname) {
 	if (is_dir(DOC_ROOT."/includes/classes/".$classname)) {
 		if (file_exists(DOC_ROOT."/includes/classes/".$classname."/".$classname.".inc.php")) {
 			include_once(DOC_ROOT."/includes/classes/".$classname."/".$classname.".inc.php");
-			if (method_exists($classname, "__init")) {
-				call_user_func(array($classname, "__init"));
-			}
 		} else {
 			if (file_exists(DOC_ROOT."/includes/classes/".$classname."/includes.inc.php")) {
 				include_once(DOC_ROOT."/includes/classes/".$classname."/includes.inc.php");
-				if (method_exists($classname, "__init")) {
-					call_user_func_array(array($classname, "__init"));
-				}
+
 			}
 		}
 	}
@@ -70,12 +65,6 @@ function isCli() {
 	}
 	return false;
 }
-function EndsWith($FullStr, $EndStr) {
-
-	$StrLen = strlen($EndStr);
-	$FullStrEnd = substr($FullStr, strlen($FullStr) - $StrLen);
-	return $FullStrEnd == $EndStr;
-}
 function getIP() {
 	if (getenv("HTTP_CLIENT_IP")) {
 		$findip = getenv("HTTP_CLIENT_IP");
@@ -88,23 +77,5 @@ function getIP() {
 	}
 	return $findip;
 }
-if (!function_exists("sys_get_temp_dir")) {
-	function sys_get_temp_dir() {
-		if ($temp = getenv('TMP')) {
-			return $temp;
-		}
-		if ($temp = getenv('TEMP')) {
-			return $temp;
-		}
-		if ($temp = getenv('TMPDIR')) {
-			return $temp;
-		}
-		$temp = tempnam(__FILE__, "");
-		if (file_exists($temp)) {
-			unlink($temp);
-			return dirname($temp);
-		}
-		//return null;
-	}
-}
+
 spl_autoload_register("AutoLoadClass", true);

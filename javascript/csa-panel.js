@@ -1,124 +1,13 @@
-$(document).ready(function() {
-	$('.dropdown').on('show.bs.dropdown', function(e) {
-		$(this).find('.dropdown-menu').first().stop(true, true).slideDown();
-	});
-	$('.dropdown').on('hide.bs.dropdown', function(e) {
-		$(this).find('.dropdown-menu').first().stop(true, true).slideUp();
-	});
-	$('[data-toggle="tooltip"]').tooltip();
-	var hash = document.location.hash;
-	var prefix = "tab_";
-	if (hash) {
-		$('.nav-tabs a[href="' + hash.replace(prefix, "") + '"]').tab('show');
-	}
-	$('.nav-tabs a').on('shown.bs.tab', function(e) {
-	});
-	$('.nav-tabs a').click(function(e) {
-		var url = $(this).attr("data-url");
-		if (url)
-		{
-			$.fn.ajaxWindow();
-			e.preventDefault();
-	
-			var url = $(this).attr("data-url");
-			var href = this.hash;
-			var pane = $(this);
-	
-			$.ajax(url, {
-			timeout: 30000,
-			success: function (data) {
-				$(href).html(data);
-				$.fn.ajaxWindow(false);
-					pane.tab('show');
-			} 
-			});
-		}
-	});
-	window.onbeforeunload = function() {
-		$.fn.ajaxWindow();
-	};
-	$.extend($.fn.dataTable.defaults, {
-		"sPaginationType": "bootstrap",
-		"bFilter": false,
-		"bSort": false,
-		"bPaginate": false,
-		"bDestroy": true,
-		"iDisplayLength": 30,
-		"sDom": "<'row'<'span6'T><'span6'f>r>t<'row'<'span6'p>>",
-		bAutoWidth: false
-	});
-	$.fn.CreateDatatable = function(table, options) {
-		var defaults = {
-			"fnDrawCallback": function() {
-				$('table' + table + ' td').bind('mouseenter', function() {
-					$(this).parent().children().each(function() {
-						$(this).addClass('datatable_highlight');
-					});
-				});
-				$('table' + table + ' td').bind('mouseleave', function() {
-					$(this).parent().children().each(function() {
-						$(this).removeClass('datatable_highlight');
-					});
-				});
-				responsiveHelper.respond();
-			},
-			fnPreDrawCallback: function() {
-				if (!responsiveHelper) {
-					responsiveHelper = new ResponsiveDatatablesHelper(tableContainer, {tablet: 1024, phone: 480});
-				}
-			},
-			fnRowCallback: function(nRow, aData, iDisplayIndex, iDisplayIndexFull) {
-				responsiveHelper.createExpandIcon(nRow);
-			}
-		};
-	
-		$.extend(defaults, options);
-		var tableContainer = $(table);
-		var responsiveHelper;
-		tableContainer.dataTable(defaults);
-	};
-	$.fn.Alert = function(title, message) {
-		BootstrapDialog.show({
-			title: "<i class=\"fa fa-exclamation-triangle\"> " + title,
-			message: message
-		});
-	};
-	var ajaxopened = false;
-	$.fn.ajaxWindow = function(enabled) {
-		if (typeof (enabled) === 'undefined') {
-			enabled = true;
-		}
-		if (enabled === false) {
-			ajaxopened = false;
-			$('#ajaxprocessing').modal('hide');
-		} else {
-			if (ajaxopened !== true) {
-				$('#ajaxprocessing').modal({backdrop: 'static'}, 'show');
-				ajaxopened = true;
-			}
-		}
-	};
-	$.fn.ParseAjax = function(data) {
-		var response = $('<div />').html(data);
-		if ($(response).find('#good').text().length) {
-			$('#ajax_good_text').html($(response).find('#good').text()).parent().show();
-		} else {
-			$("#ajax_good").hide();
-		}
-		if ($(response).find('#error').text().length) {
-			$('#ajax_error_text').html($(response).find('#error').text()).parent().show();
-		} else {
-			$("#ajax_error").hide();
-		}
-	};
-	$('[data-toggle="tooltip"]').livequery(function() {
-		$(this).tooltip();
-	});
-	
-});
+/**
+ * Control System Administrator Panel. CSAPanel
+ *
+ * Copyright CSAPanel, Inc
+ * This source file is subject to the Apache-2.0 License that is bundled
+ * with this source code in the file LICENSE
+ * @Developer : Cristian G. Danasel
+ * @copyright : CSAPanel (http://www.csa-panel.ro)
+ * @license : Under GNU Apache-2.0
+ */
 
-// Iframe resize
-function resizeIframe(obj) {
-    obj.style.height = obj.contentWindow.document.body.scrollHeight + 30 + 'px';
-    obj.style.width = obj.contentWindow.document.body.scrollWidth + 30 + 'px';
-}
+
+function resizeIframe(t){t.style.height=t.contentWindow.document.body.scrollHeight+30+"px",t.style.width=t.contentWindow.document.body.scrollWidth+30+"px"}$(document).ready(function(){$(".dropdown").on("show.bs.dropdown",function(){$(this).find(".dropdown-menu").first().stop(!0,!0).slideDown()}),$(".dropdown").on("hide.bs.dropdown",function(){$(this).find(".dropdown-menu").first().stop(!0,!0).slideUp()}),$('[data-toggle="tooltip"]').tooltip();var t=document.location.hash,a="tab_";t&&$('.nav-tabs a[href="'+t.replace(a,"")+'"]').tab("show"),$(".nav-tabs a").on("shown.bs.tab",function(){}),$(".nav-tabs a").click(function(t){var a=$(this).attr("data-url");if(a){$.fn.ajaxWindow(),t.preventDefault();var a=$(this).attr("data-url"),n=this.hash,o=$(this);$.ajax(a,{timeout:3e4,success:function(t){$(n).html(t),$.fn.ajaxWindow(!1),o.tab("show")}})}}),window.onbeforeunload=function(){$.fn.ajaxWindow()},$.extend($.fn.dataTable.defaults,{sPaginationType:"bootstrap",bFilter:!1,bSort:!1,bPaginate:!1,bDestroy:!0,iDisplayLength:30,sDom:"<'row'<'span6'T><'span6'f>r>t<'row'<'span6'p>>",bAutoWidth:!1}),$.fn.CreateDatatable=function(t,a){var n={fnDrawCallback:function(){$("table"+t+" td").bind("mouseenter",function(){$(this).parent().children().each(function(){$(this).addClass("datatable_highlight")})}),$("table"+t+" td").bind("mouseleave",function(){$(this).parent().children().each(function(){$(this).removeClass("datatable_highlight")})}),o.respond()},fnPreDrawCallback:function(){o||(o=new ResponsiveDatatablesHelper(e,{tablet:1024,phone:480}))},fnRowCallback:function(t){o.createExpandIcon(t)}};$.extend(n,a);var o,e=$(t);e.dataTable(n)},$.fn.Alert=function(t,a){BootstrapDialog.show({title:'<i class="fa fa-exclamation-triangle"> '+t,message:a})};var n=!1;$.fn.ajaxWindow=function(t){"undefined"==typeof t&&(t=!0),t===!1?(n=!1,$("#ajaxprocessing").modal("hide")):n!==!0&&($("#ajaxprocessing").modal({backdrop:"static"},"show"),n=!0)},$.fn.ParseAjax=function(t){var a=$("<div />").html(t);$(a).find("#good").text().length?$("#ajax_good_text").html($(a).find("#good").text()).parent().show():$("#ajax_good").hide(),$(a).find("#error").text().length?$("#ajax_error_text").html($(a).find("#error").text()).parent().show():$("#ajax_error").hide()},$('[data-toggle="tooltip"]').livequery(function(){$(this).tooltip()})});
