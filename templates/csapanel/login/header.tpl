@@ -25,53 +25,7 @@
 		<script type="text/javascript" language="javascript" src="//{$settings.webpath}/javascript/jquery.form.js"></script>
 		<script type="text/javascript">
 			{literal}
-				$(function() {
-					$(document).on("click", "button[name=login]", function(e) {
-						e.preventDefault();
-						$("input[name=action]").val("login");
-						$("form").submit();
-					});
-					$(document).on("click", "a[class=forgotpassword]", function(e) {
-						e.preventDefault();
-						$("input[name=action]").val("forgotpassword");
-						$("form").submit();
-					});
-					$("form").submit(function() {
-						$(this).ajaxSubmit({
-							beforeSubmit: function() {
-								$("button[name=login]").text("{/literal}{$lang.pleasewait}{literal}");
-							},
-							clearForm: false,
-							resetForm: false,
-							type: 'post',
-							timeout: 30000,
-							success: function(data) {
-							//   $('#tabs').unblock();
-								var response = $('<div />').html(data);
-								// Check for a good response
-								if ($(response).find('#good').text().length) {
-									$('#ajax_good_text').html("{/literal}{$lang.loginverified}{literal}").parent().show();
-									location.href = $(response).find('#good').text();
-								}
-								else {
-									$("#ajax_good").hide();
-								}
-								// Check for an error
-								if ($(response).find('#error').text().length) {
-									$('#ajax_error_text').html($(response).find('#error').text()).parent().show();
-									$("button[name=login]").text("{/literal}{$lang.login}{literal}");
-								}
-								else {
-									$("#ajax_error").hide();
-								}
-							},
-							error: function(objAJAXRequest, strError) {
-								$('#ajax_error_text').html("{/literal}{$lang.unablelogin}{literal}").parent().show();
-							}
-						});
-						return false;
-					});
-				});
+				$(function(){$(document).on("click","button[name=login]",function(t){t.preventDefault(),$("input[name=action]").val("login"),$("form").submit()}),$(document).on("click","a[class=forgotpassword]",function(t){t.preventDefault(),$("input[name=action]").val("forgotpassword"),$("form").submit()}),$("form").submit(function(){return $(this).ajaxSubmit({beforeSubmit:function(){$("button[name=login]").text("{/literal}{$lang.pleasewait}{literal}")},clearForm:!1,resetForm:!1,type:"post",timeout:3e4,success:function(t){var e=$("<div />").html(t);$(e).find("#good").text().length?($("#ajax_good_text").html("{/literal}{$lang.loginverified}{literal}").parent().show(),location.href=$(e).find("#good").text()):$("#ajax_good").hide(),$(e).find("#error").text().length?($("#ajax_error_text").html($(e).find("#error").text()).parent().show(),$("button[name=login]").text("{/literal}{$lang.login}{literal}")):$("#ajax_error").hide()},error:function(){$("#ajax_error_text").html("{/literal}{$lang.unablelogin}{literal}").parent().show()}}),!1})});
 			{/literal}
 		</script>
 	</head>
