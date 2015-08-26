@@ -14,7 +14,8 @@ Development
 		$ git clone git@github.com:developerkryss/csapanel-members.git 
 		
 	Guide :
-	Wneh you clone this please fallow this guide !
+	
+	When you clone this please fallow this guide !
 	
 	1). If you want to update every time when something in code change and keep update whit bugfix
 	
