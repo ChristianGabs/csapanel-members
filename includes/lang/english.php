@@ -89,9 +89,6 @@ $lang = array(
 	'userremoved' => "The user has been removed",
 	'smartsearch' => "Smart Search",
 	'search' => "Search",
-	'links' => "Links",
-	'linksprofile' => "Profile Link",
-	'linksprofileinfo' => "Please add your link to set the id clients whit the profile of your website. Do not use http:// or www.",
 	//------------------------------- ADMINISTRATOR --------------------------------------------
 	'myprofile' => "My profile",
 	'yourprofilesetting' => "Your Profile Settings",
@@ -179,6 +176,9 @@ $lang = array(
 	'settingssaved' => "Settings have been saved",
 	'savesettings' => "Save settings",
 	'bugs' => "Bugs Reports",
+	'link' => "Links",
+	'linkprofile' => "Profile Link",
+	'linksprofileinfo' => "Please add your link to set the id clients whit the profile of your website this option will allow to link your clients id on your website. Do not use http:// or www.",
 	// ------------------------- Interface ------------------------------------
 	'admincp' => "AdminCP",
 	'top10' => "Top 10",
