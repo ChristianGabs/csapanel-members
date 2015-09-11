@@ -171,19 +171,19 @@ class User {
 		}
 		return true;
 	}
-	static function UIDToUser($data, $type = 'user') {
-		if (($data == "-1" || $data == "") || $data == 0) {
+	static function UIDToUser($data) {
+		if ($data['getuser'] == "-1" || $data['getuser'] == "" || $data['getuser'] == 0) {
 			return "System";
 		}
-		if ($type == "user") {
-			$query = CSA::getInstance()->sqli->query("SELECT `email` FROM `clients` WHERE `uid`='{$data}' LIMIT 1;");
+		if ($data['type'] == "user") {
+			$query = CSA::getInstance()->sqli->query("SELECT `email` FROM `clients` WHERE `uid`='{$data['getuser']}' LIMIT 1;");
 			if ($query->num_rows == 1) {
 				$row = $query->fetch_assoc();
 				return $row['email'];
 			}
 		}
-		if($type == 'administrator') {
-			$query = CSA::getInstance()->sqli->query("SELECT `email` FROM `users` WHERE `uid`='{$data}' LIMIT 1;");
+		if($data['type'] == "administrator") {
+			$query = CSA::getInstance()->sqli->query("SELECT `email` FROM `users` WHERE `uid`='{$data['getuser']}' LIMIT 1;");
 			if ($query->num_rows == 1) {
 				$row = $query->fetch_assoc();
 				return $row['email'];
