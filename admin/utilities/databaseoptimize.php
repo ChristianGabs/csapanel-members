@@ -14,12 +14,12 @@
 if($_SESSION['mainadmin'] != "1") {
 	if(!in_array("optimizedatabase", $_SESSION['permissions'])) {
 		$_SESSION['errormessage'] = $lang['nopermission'];
-		header("Location: index.php");
+		header("Location: dashboard.php");
 		exit();
 	}
 	if($_REQUEST['mode'] == "optimize" && !in_array("optimizedatabase", $_SESSION['permissions'])) {
 		$_SESSION['errormessage'] = $lang['nopermission'];
-		header("Location: index.php");
+		header("Location: dashboard.php");
 		exit();
 	}
 
