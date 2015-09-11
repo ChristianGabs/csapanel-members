@@ -240,7 +240,11 @@ class User {
 		if (isset($data['email']) && empty($data['email'])) {
 			return array("response" => "novalidemail");
 		}
-		$query = CSA::getInstance()->sqli->query("SELECT * FROM `clients` WHERE `uid`='{$data['uid']}' LIMIT 1;");
+		if($data['type'] == "clientspending") {
+			$query = CSA::getInstance()->sqli->query("SELECT * FROM `clients_pending` WHERE `uid`='{$data['uid']}' LIMIT 1;");
+		} else {
+			$query = CSA::getInstance()->sqli->query("SELECT * FROM `clients` WHERE `uid`='{$data['uid']}' LIMIT 1;");
+		}
 		if ($query->num_rows == 1) {
 			$row = $query->fetch_assoc();
 			if (!isset($data['email'])) {
@@ -272,7 +276,11 @@ class User {
 		} else {
 			return array("response" => "usernotexist");
 		}
-		CSA::getInstance()->sqli->query("UPDATE `clients` SET `email`='{$data['email']}', `userid`='{$data['userid']}', `realname`='{$data['realname']}', `phone`='{$data['phone']}', `proof`='{$data['proof']}', `details`='{$data['notes']}', `status`='{$data['status']}' WHERE `uid`='{$data['uid']}' LIMIT 1;");
+		if($data['type'] == "clientspending") {
+			CSA::getInstance()->sqli->query("UPDATE `clients_pending` SET `email`='{$data['email']}', `userid`='{$data['userid']}', `realname`='{$data['realname']}', `phone`='{$data['phone']}', `proof`='{$data['proof']}', `details`='{$data['notes']}', `status`='{$data['status']}' WHERE `uid`='{$data['uid']}' LIMIT 1;");
+		} else {
+			CSA::getInstance()->sqli->query("UPDATE `clients` SET `email`='{$data['email']}', `userid`='{$data['userid']}', `realname`='{$data['realname']}', `phone`='{$data['phone']}', `proof`='{$data['proof']}', `details`='{$data['notes']}', `status`='{$data['status']}' WHERE `uid`='{$data['uid']}' LIMIT 1;");
+		}
 		EventLog::Log('edituser', $data['uid'], $_SESSION['uid']);
 		return array("response" => "success");
 	}
@@ -320,11 +328,14 @@ class User {
 		}
 		return false;
 	}
-	public static function GetClientInfo($uid) {
-		$query = CSA::getInstance()->sqli->query("SELECT * FROM `clients` WHERE `uid`='{$uid}' LIMIT 1;");
+	public static function GetClientInfo($data) {
+		if($data['type'] == "clientspending") {
+			$query = CSA::getInstance()->sqli->query("SELECT * FROM `clients_pending` WHERE `uid`='{$data['uid']}' LIMIT 1;");
+		} else {
+			$query = CSA::getInstance()->sqli->query("SELECT * FROM `clients` WHERE `uid`='{$data['uid']}' LIMIT 1;");
+		}
 		if ($query->num_rows == 1) {
 			return $query->fetch_assoc();
-			
 		}
 		return array();
 	}
@@ -438,7 +449,7 @@ class User {
 			$_SESSION['permissions'] = unserialize($row['permission']);
 			$_SESSION['mainadmin'] = $row['mainadmin'];
 			if ($_SESSION['mainadmin'] == "1") {
-				$_SESSION['permissions'] = array("addclient","editclient","deleteclient","manageclient","optimizedatabase","editadmin","addadmin","deleteadmin","generalsettings");
+				$_SESSION['permissions'] = array("addclient","editclient","deleteclient","aproveclient","manageclient","optimizedatabase","editadmin","addadmin","deleteadmin","generalsettings");
 			}
 			$sesionID = md5(session_id());
 			CSA::getInstance()->sqli->query("UPDATE `users` SET `session`='{$sesionID}' WHERE `uid`='{$row['uid']}' LIMIT 1");
