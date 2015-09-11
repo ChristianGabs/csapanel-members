@@ -55,22 +55,34 @@ switch($_REQUEST['logtype']) {
 		$query = CSA::getInstance()->sqli->query("SELECT * FROM `events` {$sql} ORDER BY `time` DESC LIMIT ".($_REQUEST['page'] * $limit).",".$limit);
 		if($query->num_rows > 0) {
 			while($row = $query->fetch_assoc()) {
-				$row['user'] = User::UIDToUser($row['userid']);
-				$queryuser = CSA::getInstance()->sqli->query("SELECT realname FROM `clients` WHERE `uid`='{$row['userid']}' LIMIT 1;");
+				if($row['type'] == "usermgadm") {
+					$row['user'] = User::UIDToUser(array("getuser" => $row['userid'], "type" => "administrator"));
+					$queryuser = CSA::getInstance()->sqli->query("SELECT firstname, lastname FROM `users_profile` WHERE `uid`='{$row['userid']}' LIMIT 1;");
+				} else {
+					$row['user'] = User::UIDToUser(array("getuser" => $row['userid'], "type" => "user"));
+					$queryuser = CSA::getInstance()->sqli->query("SELECT realname FROM `clients` WHERE `uid`='{$row['userid']}' LIMIT 1;");
+				}
 				if($queryuser->num_rows == 1) {
 					$rowuser = $queryuser->fetch_assoc();
 				}
+				
 				$queryuser = CSA::getInstance()->sqli->query("SELECT firstname, lastname FROM `users_profile` WHERE `uid`='{$row['runbyid']}' LIMIT 1;");
 				if($queryuser->num_rows == 1) {
 					$rowrunby = $queryuser->fetch_assoc();
 				}
-				$row['runby'] = User::UIDToUser($row['runbyid'], "administrator");
+				
+				$row['runby'] = User::UIDToUser(array("getuser" => $row['runbyid'], "type" => "administrator"));
+				
 				if($rowuser && !empty($rowuser['realname'])) {
 					$tempuser = '<strong data-toggle="tooltip" title="'.Strings::filter($rowuser['realname']).'('.Strings::filter($row['user']).')"><i class="fa fa-info-circle"></i></strong>';
+				} elseif($rowuser && !empty($rowuser['firstname'])) {
+					$tempuser = '<strong data-toggle="tooltip" title="'.Strings::filter($rowuser['firstname']).' '.Strings::filter($rowuser['lastname']).'('.Strings::filter($row['user']).')"><i class="fa fa-info-circle"></i></strong>';
 				} else {
 					$tempuser = '<strong data-toggle="tooltip" title="'.Strings::filter($row['user']).'"><i class="fa fa-info-circle"></i></strong>';
 				}
+				
 				$row['message'] = str_replace("{user}", $tempuser, $row['message']);
+				
 				if($rowrunby && !empty($rowrunby['firstname'])) {
 					$tempuser = '<strong data-toggle="tooltip" title="'.Strings::filter($rowrunby['firstname']).' '.Strings::filter($rowrunby['lastname']).'('.Strings::filter($row['runby']).')"><i class="fa fa-info-circle"></i></strong>';
 				} else {
