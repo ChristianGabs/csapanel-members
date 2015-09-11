@@ -114,7 +114,7 @@
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-question"></i> {$lang.help} <i class="arrow fa fa-chevron-right"></i></a>
 							<ul class="dropdown-menu">
-								{if $smarty.session.mainadmin == "1"}
+								{if in_array("optimizedatabase", $smarty.session.permissions)}
 									<li>
 										<a href="utility.php?module=databaseoptimize"><i class="fa fa-sitemap"></i> {$lang.optimize}</a>
 									</li>
@@ -125,7 +125,7 @@
 						</li>
 						{if $updateavailable == true && $smarty.session.mainadmin == "1"}
 							<li><a href="utility.php?module=update" >{$lang.update}</a></li>
-							{/if}
+						{/if}
 					</ul>
 					<ul class="nav navbar-nav navbar-right navbar-user">
 						<li><a href="#" id="clock" data-placement="bottom" data-toggle="tooltip" data-original-title='{$smarty.now|date_format:"%A | %B %e, %Y  - %I:%M %p"}'><i class="fa fa-clock-o"></i></a></li>
