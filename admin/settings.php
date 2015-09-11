@@ -14,7 +14,7 @@
 require_once("../includes/csa-functions.php");
 if($_SESSION['mainadmin'] != "1") {
 	$_SESSION['errormessage'] = $lang['nopermission'];
-	header("Location: index.php");
+	header("Location: dashboard.php");
 	exit();
 }
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
