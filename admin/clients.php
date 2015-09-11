@@ -16,22 +16,22 @@ require_once("../includes/csa-functions.php");
 if($_SESSION['mainadmin'] != "1") {
 	if(!in_array("addclient", $_SESSION['permissions']) && !in_array("editclient", $_SESSION['permissions']) && !in_array("deleteclient", $_SESSION['permissions']) && !in_array("manageclient", $_SESSION['permissions'])) {
 		$_SESSION['errormessage'] = $lang['nopermission'];
-		header("Location: index.php");
+		header("Location: dashboard.php");
 		exit();
 	}
-	if($_REQUEST['mode'] == "edit" && !in_array("editclient", $_SESSION['permissions'])) {
+	if($_REQUEST['mode'] == "summary" && !in_array("editclient", $_SESSION['permissions'])) {
 		$_SESSION['errormessage'] = $lang['nopermission'];
-		header("Location: index.php");
+		header("Location: dashboard.php");
 		exit();
 	}
 	if($_REQUEST['mode'] == "add" && !in_array("addclient", $_SESSION['permissions'])) {
 		$_SESSION['errormessage'] = $lang['nopermission'];
-		header("Location: index.php");
+		header("Location: dashboard.php");
 		exit();
 	}
 	if($_REQUEST['mode'] == "delete" && !in_array("deleteclient", $_SESSION['permissions'])) {
 		$_SESSION['errormessage'] = $lang['nopermission'];
-		header("Location: index.php");
+		header("Location: dashboard.php");
 		exit();
 	}
 }
