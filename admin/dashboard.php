@@ -12,7 +12,7 @@
 
 
 require_once("../includes/csa-functions.php");
-if($_SESSION['mainadmin'] != "1") {
+if($_SESSION['loggedin'] != "1") {
 	$_SESSION['errormessage'] = $lang['nopermission'];
 	header("Location: index.php");
 	exit();
