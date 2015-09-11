@@ -449,7 +449,7 @@ class User {
 			$_SESSION['permissions'] = unserialize($row['permission']);
 			$_SESSION['mainadmin'] = $row['mainadmin'];
 			if ($_SESSION['mainadmin'] == "1") {
-				$_SESSION['permissions'] = array("addclient","editclient","deleteclient","aproveclient","manageclient","optimizedatabase","editadmin","addadmin","deleteadmin","generalsettings");
+				$_SESSION['permissions'] = array("addclient","editclient","deleteclient","approveclient","manageclient","optimizedatabase","editadmin","addadmin","deleteadmin","generalsettings");
 			}
 			$sesionID = md5(session_id());
 			CSA::getInstance()->sqli->query("UPDATE `users` SET `session`='{$sesionID}' WHERE `uid`='{$row['uid']}' LIMIT 1");
