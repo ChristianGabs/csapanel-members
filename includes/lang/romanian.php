@@ -16,6 +16,7 @@ $lang = array(
 	'dashboard' => "Dashboard",
 	'home' => "Acasa",
 	'clients' => "Utilizatori",
+	'editclient' => "Editare Utilizator",
 	'id' => "ID",
 	'pleasewait' => "Te rog asteapta...",
 	'processing' => "Procesare...",
