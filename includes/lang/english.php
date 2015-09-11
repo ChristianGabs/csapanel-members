@@ -16,6 +16,7 @@ $lang = array(
 	'dashboard' => "Dashboard",
 	'home' => "Home",
 	'clients' => "Clients",
+	'editclient' => "Edit Client",
 	'id' => "ID",
 	'pleasewait' => "Please wait...",
 	'processing' => "Processing...",
