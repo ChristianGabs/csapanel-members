@@ -16,22 +16,22 @@ require_once("../includes/csa-functions.php");
 if($_SESSION['mainadmin'] != "1") {
 	if(!in_array("editadmin", $_SESSION['permissions']) && !in_array("addadmin", $_SESSION['permissions']) && !in_array("deleteadmin", $_SESSION['permissions']) && !in_array("manageclient", $_SESSION['permissions'])) {
 		$_SESSION['errormessage'] = $lang['nopermission'];
-		header("Location: index.php");
+		header("Location: dashboard.php");
 		exit();
 	}
 	if($_REQUEST['mode'] == "edit" && !in_array("editadmin", $_SESSION['permissions'])) {
 		$_SESSION['errormessage'] = $lang['nopermission'];
-		header("Location: index.php");
+		header("Location: dashboard.php");
 		exit();
 	}
 	if($_REQUEST['mode'] == "add" && !in_array("addadmin", $_SESSION['permissions'])) {
 		$_SESSION['errormessage'] = $lang['nopermission'];
-		header("Location: index.php");
+		header("Location: dashboard.php");
 		exit();
 	}
 	if($_REQUEST['mode'] == "delete" && !in_array("deleteadmin", $_SESSION['permissions'])) {
 		$_SESSION['errormessage'] = $lang['nopermission'];
-		header("Location: index.php");
+		header("Location: dashboard.php");
 		exit();
 	}
 }
@@ -134,7 +134,7 @@ switch($_REQUEST['mode']) {
 			header("Location: index.php");
 		}
 		break;
-	}	
+	}
 	case "add" : {
 		$display->pagename = $lang['addadministrator'];
 		$display->DisplayType("admin");
