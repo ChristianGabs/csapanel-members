@@ -103,7 +103,7 @@
 											<a href="settings.php"><i class="fa fa-cogs"></i>  {$lang.settings}</a>
 										</li>
 									{/if}
-									{if $smarty.session.mainadmin == "1"}
+									{if in_array("editadmin", $smarty.session.permissions) || in_array("addadmin", $smarty.session.permissions) || in_array("deleteadmin", $smarty.session.permissions)}
 										<li>
 											<a href="administrators.php"><i class="fa fa-adn"></i>  {$lang.administrators}</a>
 										</li>
