@@ -23,7 +23,6 @@
 						<select name="status" class="form-control" id="status">
 							<option value="0" {if $info.status == "0"}selected=selected{/if}>{$lang.trust}</option>
 							<option value="1" {if $info.status == "1"}selected=selected{/if}>{$lang.untrustworthy}</option>
-							<option value="2" {if $info.status == "2"}selected=selected{/if}>{$lang.pending}</option>
 						</select>
 					</div>
 				</div>
@@ -61,7 +60,7 @@
 				<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12'>
 					<div class='form-group'>
 						<label for="notes">{$lang.notes}</label>
-						<textarea class="form-control" name="notes" id="notes" cols="50" rows="3" type="text">{$info.notes|e}</textarea>
+						<textarea class="form-control" name="notes" id="notes" cols="50" rows="3" type="text">{$info.details|e}</textarea>
 					</div>
 				</div>
 			</div>
