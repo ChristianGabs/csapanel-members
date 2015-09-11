@@ -100,22 +100,6 @@
 								<input type="checkbox" name="perms[]" value="optimizedatabase" {if in_array("optimizedatabase", $info.permissions)}checked=checked{/if}> {$lang.optimize}
 							</td>
 						</tr>
-						<tr>
-							<td align="left"><b>{$lang.administrators}</b></td>
-						</tr>
-						<tr>
-							<td align="left">
-								<input type="checkbox" name="perms[]" value="addadmin" {if in_array("addadmin", $info.permissions)}checked=checked{/if}> {$lang.add}
-							</td>
-							<td align="left">
-								<input type="checkbox" name="perms[]" value="editadmin" {if in_array("editadmin", $info.permissions)}checked=checked{/if}> {$lang.edit}
-							</td>
-						</tr>
-						<tr>
-							<td align="left">
-								<input type="checkbox" name="perms[]" value="deleteadmin" {if in_array("deleteadmin", $info.permissions)}checked=checked{/if}> {$lang.delete}
-							</td>
-						</tr>
 					</table>
 				</div>
 			</div>
