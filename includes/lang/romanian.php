@@ -179,6 +179,9 @@ $lang = array(
 	'settingssaved' => "Setarile au fost salvate cu success",
 	'savesettings' => "Salveaza setarile",
 	'bugs' => "Raporteaza Erori",
+	'link' => "Links",
+	'linkprofile' => "Link Profil",
+	'linksprofileinfo' => "Va rugam sa introduceti link-ul catre profilul utilizatorului aceasta optiune va permite sa setati un link catre un nume care este definit pe site-ul dvs. Va rugam sa nu folositi http:// sau www.",
 	// ------------------------- Interface ------------------------------------
 	'admincp' => "AdminCP",
 	'top10' => "Top 10",
