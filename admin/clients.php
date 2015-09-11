@@ -12,13 +12,7 @@
 
 
 require_once("../includes/csa-functions.php");
-if(defined("DEMO")) {
-	if($_SERVER['REQUEST_METHOD'] == 'POST' || in_array($_REQUEST['mode'], array("delete", "delsubuser", "loginas"))) {
-		$_SESSION['errormessage'] = "This feature is disabled in demo mode";
-		header("Location: dashboard.php");
-		exit();
-	}
-}
+
 if($_SESSION['mainadmin'] != "1") {
 	if(!in_array("addclient", $_SESSION['permissions']) && !in_array("editclient", $_SESSION['permissions']) && !in_array("deleteclient", $_SESSION['permissions']) && !in_array("manageclient", $_SESSION['permissions'])) {
 		$_SESSION['errormessage'] = $lang['nopermission'];
