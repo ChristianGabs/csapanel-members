@@ -10,7 +10,11 @@
  * @license : Under GNU Apache-2.0
  */
 require_once("../includes/csa-functions.php");
-
+if($_SESSION['loggedin'] != "1") {
+	$_SESSION['errormessage'] = $lang['nopermission'];
+	header("Location: index.php");
+	exit();
+}
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
 	if($_REQUEST['mode'] == "save") {
 		if($_REQUEST['uid'] != $_SESSION['uid']) {
