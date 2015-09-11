@@ -12,7 +12,13 @@
 
 
 require_once("../includes/csa-functions.php");
-
+if(defined("DEMO")) {
+	if($_SERVER['REQUEST_METHOD'] == 'POST' || in_array($_REQUEST['mode'], array("delete", "delsubuser", "loginas"))) {
+		$_SESSION['errormessage'] = "This feature is disabled in demo mode";
+		header("Location: dashboard.php");
+		exit();
+	}
+}
 if($_SESSION['mainadmin'] != "1") {
 	if(!in_array("addclient", $_SESSION['permissions']) && !in_array("editclient", $_SESSION['permissions']) && !in_array("deleteclient", $_SESSION['permissions']) && !in_array("manageclient", $_SESSION['permissions'])) {
 		$_SESSION['errormessage'] = $lang['nopermission'];
@@ -145,19 +151,6 @@ switch($_REQUEST['mode']) {
 		$display->pages = $pages;
 		$display->DisplayType("ajax");
 		$display->Output("admin/clients/ajax-clientlist.tpl");
-		break;
-	}
-	case "edit" : {
-		$display->pagename = $lang['editclient'];
-		$info = User::GetUserInfo($_REQUEST['uid']);
-		if($info && count($info) != 0) {
-			$display->info = $info;
-			$display->DisplayType("admin");
-			$display->Output("admin/clients/clients-add.tpl");
-		} else {
-			$_SESSION['errormessage'] = $lang['nouserfound'];
-			header("Location: clients.php");
-		}
 		break;
 	}
 	case "add" : {
