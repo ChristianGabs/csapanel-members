@@ -36,7 +36,7 @@ class Eventlog {
 				$event['message'] = $lang['eventvars']['addedadmin'];
 				$event['uid'] = $uid;
 				$event['runby'] = $byuid;
-				$event['type'] = 'usermgmt';
+				$event['type'] = 'usermgadm';
 				break;
 			}
 			case "deleteadministrator":
@@ -47,7 +47,7 @@ class Eventlog {
 				$event['message'] = $lang['eventvars']['deleteadmin'];
 				$event['uid'] = $uid;
 				$event['runby'] = $byuid;
-				$event['type'] = 'usermgmt';
+				$event['type'] = 'usermgadm';
 				break;
 			}
 			case "editadministrator":
@@ -58,7 +58,7 @@ class Eventlog {
 				$event['message'] = $lang['eventvars']['editedadmin'];
 				$event['uid'] = $uid;
 				$event['runby'] = $byuid;
-				$event['type'] = 'usermgmt';
+				$event['type'] = 'usermgadm';
 				break;
 			}
 			case "adduser":
