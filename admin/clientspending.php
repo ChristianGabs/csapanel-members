@@ -19,17 +19,7 @@ if($_SESSION['mainadmin'] != "1") {
 		header("Location: index.php");
 		exit();
 	}
-	if($_REQUEST['mode'] == "edit" && !in_array("editclient", $_SESSION['permissions'])) {
-		$_SESSION['errormessage'] = $lang['nopermission'];
-		header("Location: index.php");
-		exit();
-	}
-	if($_REQUEST['mode'] == "add" && !in_array("addclient", $_SESSION['permissions'])) {
-		$_SESSION['errormessage'] = $lang['nopermission'];
-		header("Location: index.php");
-		exit();
-	}
-	if($_REQUEST['mode'] == "delete" && !in_array("deleteclient", $_SESSION['permissions'])) {
+	if($_REQUEST['mode'] == "edit" && !in_array("editclient", $_SESSION['permissions']) && $_REQUEST['mode'] == "delete" && !in_array("deleteclient", $_SESSION['permissions']) && $_REQUEST['mode'] == "approve" && !in_array("approveclient", $_SESSION['permissions'])) {
 		$_SESSION['errormessage'] = $lang['nopermission'];
 		header("Location: index.php");
 		exit();
@@ -37,52 +27,9 @@ if($_SESSION['mainadmin'] != "1") {
 }
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
 	switch($_REQUEST['mode']) {
-		case "add" : {
-			$return = User::AddClient(array(
-				'email' => $_REQUEST['email'],
-				'userid' => $_REQUEST['userid'],
-				'status' => $_REQUEST['status'],
-				'realname' => $_REQUEST['realname'],
-				'proof' => $_REQUEST['proof'],
-				'phone' => $_REQUEST['phone'],
-				'notes' => $_REQUEST['notes']
-			));
-			switch($return['response']) {
-				case "useradded" : {
-					$_SESSION['goodmessage'] = $lang['useradded'];
-					break;
-				}
-				case "novalidemail" : {
-					$response = $lang['novalidemail'];
-					break;
-				}
-				case "invalidemail" : {
-					$response = $lang['invalidemail'];
-					break;
-				}
-				case "nouserid" : {
-					$response = $lang['nouserid'];
-					break;
-				}
-				case "proofnotdefined" : {
-					$response = $lang['proofnotdefined'];
-					break;
-				}
-				default : {
-					$response = $lang['opssomething'];
-					break;
-				}
-			}
-			if(!empty($response)) {
-				$display->info = $_REQUEST;
-				$_SESSION['errormessage'] = $response;
-			}
-			header("Location: clients.php");
-			exit();
-			break;
-		}
 		case "edit" : {
 			$return = User::EditClient(array(
+				'type' => "clientspending",
 				'uid' => $_REQUEST['uid'],
 				'email' => $_REQUEST['email'],
 				'userid' => $_REQUEST['userid'],
@@ -118,7 +65,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 					break;
 				}
 			}
-			header("Location: clientspending.php?mode=summary&uid={$_REQUEST['uid']}");
+			header("Location: clientspending.php");
 			exit();
 			break;
 		}
@@ -148,11 +95,11 @@ switch($_REQUEST['mode']) {
 	}
 	case "edit" : {
 		$display->pagename = $lang['editclient'];
-		$info = User::GetUserInfo($_REQUEST['uid']);
+		$info = User::GetClientInfo(array("uid" => $_REQUEST['uid'], "type" => "clientspending"));
 		if($info && count($info) != 0) {
 			$display->info = $info;
 			$display->DisplayType("admin");
-			$display->Output("admin/clientspending/clients-add.tpl");
+			$display->Output("admin/clientspending/clients-edit.tpl");
 		} else {
 			$_SESSION['errormessage'] = $lang['nouserfound'];
 			header("Location: clientspending.php");
@@ -219,21 +166,6 @@ switch($_REQUEST['mode']) {
 		exit();
 		break;
 
-	}
-	case "summary" : {
-		$display->pagename = $lang['clientsummary'];
-		
-		$info = User::GetClientInfo($_REQUEST['uid']);
-		if($info && count($info) != 0) {
-			$display->DisplayType("admin");
-			$display->info = $info;
-
-			$display->Output("admin/clientspending/clients-summary.tpl");
-		} else {
-			$_SESSION['errormessage'] = $lang['nouserfound'];
-			header("Location: clients.php");
-		}
-		break;
 	}
 	default : {
 		$display->pagename = $lang['userpending'];
