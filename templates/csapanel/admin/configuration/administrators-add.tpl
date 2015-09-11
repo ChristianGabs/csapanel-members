@@ -3,12 +3,9 @@
 		$(function() {
 			$("#mainadmin").change(function() {
 				var selected = $("#mainadmin option:selected");
-				if (selected.val() == 1)
-				{
+				if (selected.val() == 1) {
 					$(".permissions").hide("fast");
-				}
-				else
-				{
+				} else {
 					$(".permissions").show("fast");
 				}
 			});
@@ -22,7 +19,6 @@
 	{else}
 		<input type="hidden" name="mode" value="add" />
 	{/if}
-	
 	<div class="panel panel-primary">
 		<div class="panel-heading">
 			<h3 class="panel-title"><i class="fa fa-users"></i> {$lang.administrators}</h3>
@@ -86,6 +82,11 @@
 							</td>
 							<td align="left">
 								<input type="checkbox" name="perms[]" value="manageclient" {if in_array("manageclient", $info.permissions)}checked=checked{/if}> {$lang.manage}
+							</td>
+						</tr>
+						<tr>
+							<td align="left">
+							<input type="checkbox" name="perms[]" value="approveclient" {if in_array("approveclient", $info.permissions)}checked=checked{/if}> {$lang.approve}
 							</td>
 						</tr>
 						<tr>
