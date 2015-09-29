@@ -155,8 +155,8 @@ class Display {
 					break;
 				}
 				case "interface": {
-					$this->getSmartyInstance()->display('interface/footer.tpl');
 					echo $footerout;
+					$this->getSmartyInstance()->display('interface/footer.tpl');
 					break;
 				}
 				case "admin": {
