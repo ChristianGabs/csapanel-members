@@ -26,7 +26,7 @@ $start = microtime(true);
 	if ($memlimt < "16") {
 		@ini_set("memory_limit", "64M");
 	}
-	setlocale(LC_ALL,"italian"); 
+
 	$display = Display::getInstance();
 	$smarty = Display::getSmartyInstance();
 	$session = new session();
