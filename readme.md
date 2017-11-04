@@ -11,7 +11,7 @@ Development
 
 1. Clone this repository from GitHub:
 
-		$ git clone git@github.com:developerkryss/csapanel-members.git 
+		$ git clone git@github.com:ChristianGabs/csapanel-members.git 
 		
 	Guide :
 	
@@ -33,7 +33,7 @@ Development
 		
 			OR
 			
-		$ git clonse https://github.com/developerkryss/csapanel-members.git yourfoldername
+		$ git clonse https://github.com/ChristianGabs/csapanel-members.git yourfoldername
 		
 		$ cd yournamefolder
 		
@@ -52,8 +52,8 @@ Development
 
 License & Author
 -----------------
-- Author:: Cristian - Gabriel Danasel (<developer.webservice@gmail.com>)
-- Website:: CSAPanel (http://www.csa-panel.ro)
+- Author:: Cristian - Gabriel Danasel (<developer@csa-panel.com>)
+- Website:: CSAPanel (http://www.csa-panel.com)
 
 
 ```text
